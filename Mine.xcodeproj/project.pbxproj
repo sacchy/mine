@@ -14,6 +14,9 @@
 		F1C9E86B1A6963150028BE1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1C9E86A1A6963150028BE1F /* Images.xcassets */; };
 		F1C9E86E1A6963150028BE1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1C9E86C1A6963150028BE1F /* LaunchScreen.xib */; };
 		F1C9E87A1A6963150028BE1F /* MineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E8791A6963150028BE1F /* MineTests.m */; };
+		F1C9E8901A696FB80028BE1F /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E88F1A696FB80028BE1F /* TableController.m */; };
+		F1C9E8931A6971040028BE1F /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E8921A6971040028BE1F /* TableUtil.m */; };
+		F1C9E89A1A69752D0028BE1F /* LabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E8991A69752D0028BE1F /* LabelUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,13 @@
 		F1C9E8731A6963150028BE1F /* MineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C9E8781A6963150028BE1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1C9E8791A6963150028BE1F /* MineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineTests.m; sourceTree = "<group>"; };
+		F1C9E88E1A696FB80028BE1F /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
+		F1C9E88F1A696FB80028BE1F /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
+		F1C9E8911A6971040028BE1F /* TableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableUtil.h; sourceTree = "<group>"; };
+		F1C9E8921A6971040028BE1F /* TableUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableUtil.m; sourceTree = "<group>"; };
+		F1C9E8941A6972040028BE1F /* AppMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
+		F1C9E8981A69752D0028BE1F /* LabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelUtil.h; sourceTree = "<group>"; };
+		F1C9E8991A69752D0028BE1F /* LabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +91,13 @@
 		F1C9E85C1A6963150028BE1F /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				F1C9E8941A6972040028BE1F /* AppMacro.h */,
 				F1C9E8611A6963150028BE1F /* AppDelegate.h */,
 				F1C9E8621A6963150028BE1F /* AppDelegate.m */,
 				F1C9E8641A6963150028BE1F /* ViewController.h */,
 				F1C9E8651A6963150028BE1F /* ViewController.m */,
+				F1C9E89C1A6979680028BE1F /* Inheri */,
+				F1C9E89B1A6979500028BE1F /* Util */,
 				F1C9E8671A6963150028BE1F /* Main.storyboard */,
 				F1C9E86A1A6963150028BE1F /* Images.xcassets */,
 				F1C9E86C1A6963150028BE1F /* LaunchScreen.xib */,
@@ -117,6 +130,26 @@
 				F1C9E8781A6963150028BE1F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1C9E89B1A6979500028BE1F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F1C9E8911A6971040028BE1F /* TableUtil.h */,
+				F1C9E8921A6971040028BE1F /* TableUtil.m */,
+				F1C9E8981A69752D0028BE1F /* LabelUtil.h */,
+				F1C9E8991A69752D0028BE1F /* LabelUtil.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		F1C9E89C1A6979680028BE1F /* Inheri */ = {
+			isa = PBXGroup;
+			children = (
+				F1C9E88E1A696FB80028BE1F /* TableController.h */,
+				F1C9E88F1A696FB80028BE1F /* TableController.m */,
+			);
+			name = Inheri;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1C9E8661A6963150028BE1F /* ViewController.m in Sources */,
+				F1C9E8931A6971040028BE1F /* TableUtil.m in Sources */,
+				F1C9E89A1A69752D0028BE1F /* LabelUtil.m in Sources */,
 				F1C9E8631A6963150028BE1F /* AppDelegate.m in Sources */,
+				F1C9E8901A696FB80028BE1F /* TableController.m in Sources */,
 				F1C9E8601A6963150028BE1F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,9 +379,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MASAKI SATOH (74MVQAL8J9)";
 				INFOPLIST_FILE = Mine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "00e8c658-5928-43c2-b315-b40e64aae41f";
 			};
 			name = Debug;
 		};
@@ -353,9 +392,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MASAKI SATOH (92CAL6YW8F)";
 				INFOPLIST_FILE = Mine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1E0D9EEA-42F1-4B96-8D7A-8C08B9F49501";
 			};
 			name = Release;
 		};

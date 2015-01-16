@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TableController.h
 //  Mine
 //
 //  Created by 佐藤 昌樹 on 2015/01/17.
@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TableController.h"
 
-@interface ViewController : TableController
+@interface TableController : UIViewController
+<
+    UITableViewDataSource,
+    UITableViewDelegate
+>
 
+- (void)addTable;
 
 @end
-
