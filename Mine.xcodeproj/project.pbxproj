@@ -17,6 +17,8 @@
 		F1C9E8901A696FB80028BE1F /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E88F1A696FB80028BE1F /* TableController.m */; };
 		F1C9E8931A6971040028BE1F /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E8921A6971040028BE1F /* TableUtil.m */; };
 		F1C9E89A1A69752D0028BE1F /* LabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C9E8991A69752D0028BE1F /* LabelUtil.m */; };
+		F1E9D21B1A6C4E2100A5BC33 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D21A1A6C4E2100A5BC33 /* GameViewController.m */; };
+		F1E9D21F1A6C4FB800A5BC33 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D21E1A6C4FB800A5BC33 /* Grid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 		F1C9E8941A6972040028BE1F /* AppMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
 		F1C9E8981A69752D0028BE1F /* LabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelUtil.h; sourceTree = "<group>"; };
 		F1C9E8991A69752D0028BE1F /* LabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelUtil.m; sourceTree = "<group>"; };
+		F1E9D2191A6C4E2100A5BC33 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		F1E9D21A1A6C4E2100A5BC33 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		F1E9D21D1A6C4FB800A5BC33 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		F1E9D21E1A6C4FB800A5BC33 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,8 @@
 				F1C9E8941A6972040028BE1F /* AppMacro.h */,
 				F1C9E8611A6963150028BE1F /* AppDelegate.h */,
 				F1C9E8621A6963150028BE1F /* AppDelegate.m */,
-				F1C9E8641A6963150028BE1F /* ViewController.h */,
-				F1C9E8651A6963150028BE1F /* ViewController.m */,
+				F1E9D2181A6C4DAE00A5BC33 /* Scene */,
+				F1E9D21C1A6C4F6B00A5BC33 /* Module */,
 				F1C9E89C1A6979680028BE1F /* Inheri */,
 				F1C9E89B1A6979500028BE1F /* Util */,
 				F1C9E8671A6963150028BE1F /* Main.storyboard */,
@@ -150,6 +156,26 @@
 				F1C9E88F1A696FB80028BE1F /* TableController.m */,
 			);
 			name = Inheri;
+			sourceTree = "<group>";
+		};
+		F1E9D2181A6C4DAE00A5BC33 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F1C9E8641A6963150028BE1F /* ViewController.h */,
+				F1C9E8651A6963150028BE1F /* ViewController.m */,
+				F1E9D2191A6C4E2100A5BC33 /* GameViewController.h */,
+				F1E9D21A1A6C4E2100A5BC33 /* GameViewController.m */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		F1E9D21C1A6C4F6B00A5BC33 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				F1E9D21D1A6C4FB800A5BC33 /* Grid.h */,
+				F1E9D21E1A6C4FB800A5BC33 /* Grid.m */,
+			);
+			name = Module;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,10 +280,12 @@
 			files = (
 				F1C9E8661A6963150028BE1F /* ViewController.m in Sources */,
 				F1C9E8931A6971040028BE1F /* TableUtil.m in Sources */,
+				F1E9D21B1A6C4E2100A5BC33 /* GameViewController.m in Sources */,
 				F1C9E89A1A69752D0028BE1F /* LabelUtil.m in Sources */,
 				F1C9E8631A6963150028BE1F /* AppDelegate.m in Sources */,
 				F1C9E8901A696FB80028BE1F /* TableController.m in Sources */,
 				F1C9E8601A6963150028BE1F /* main.m in Sources */,
+				F1E9D21F1A6C4FB800A5BC33 /* Grid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +482,7 @@
 				F1C9E87F1A6963150028BE1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1C9E8801A6963150028BE1F /* Build configuration list for PBXNativeTarget "MineTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +491,7 @@
 				F1C9E8821A6963150028BE1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

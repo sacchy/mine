@@ -11,6 +11,5 @@
 
 @interface ViewController : TableController
 
-
 @end
 
