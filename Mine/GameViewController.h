@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlertController.h"
 
-@interface GameViewController : UIViewController
+@interface GameViewController : AlertController
 
 - (void)addGrid;
+- (void)addSeal;
 
 @end

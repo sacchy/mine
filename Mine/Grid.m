@@ -60,7 +60,6 @@
         CGContextMoveToPoint(   context, offsetX            , y + offsetY);
         CGContextAddLineToPoint(context, offsetX + win_width, y + offsetY);
     }
-    
     CGContextStrokePath(context);
 }
 

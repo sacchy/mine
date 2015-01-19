@@ -20,9 +20,9 @@
 #define WIN_AVARABLE_VIEW_HEIGHT WIN_VIEW_HEIGHT - STATUSBAR_HEIGHT - NAVIGATIONBAR_HEIGHT
 #define WIN_AVARABLE_HEIGHT WIN_HEIGHT - STATUSBAR_HEIGHT - NAVIGATIONBAR_HEIGHT
 
-#define TABLE_IOS_6 CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.toolbar.frame.size.height*2)
-#define TABLE_IOS_7 CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.toolbar.frame.size.height*2-[[UIApplication sharedApplication] statusBarFrame].size.height)
+#define TABLE_IOS_6 CGRectMake(0, 0, WIN_VIEW_WIDTH, WIN_VIEW_HEIGHT - self.navigationController.toolbar.frame.size.height*2)
+#define TABLE_IOS_7 CGRectMake(0, 0, WIN_VIEW_WIDTH, WIN_VIEW_HEIGHT - self.navigationController.toolbar.frame.size.height*2-STATUSBAR_HEIGHT)
 #define TABLE_RECT ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? TABLE_IOS_7  : TABLE_IOS_6
 
-#define MAX_MAP_SIZE 10
+#define MAP_SIZE 5
 #endif

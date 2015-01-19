@@ -11,5 +11,6 @@
 @interface Grid : UIView
 
 - (id)initWithFrame:(CGRect)frame headerHeight:(float)headerHeight mainHeight:(float)mainHeight mapSize:(int)num;
+- (int)getSplitSize;
 
 @end
