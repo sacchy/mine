@@ -9,17 +9,18 @@
 #import "GameViewController.h"
 #import "AppMacro.h"
 #import "Grid.h"
+#import "Number.h"
 #import "Seal.h"
 
 typedef enum kTagGame : long
 {
     kTagGrid = 1,
+    kTagNumber,
     kTagSeal,
 } kTagGame;
 
 @interface GameViewController()
 {
-
 }
 @end
 
@@ -30,6 +31,7 @@ typedef enum kTagGame : long
     [super viewDidLoad];
     
     [self addGrid];
+    [self addNumber];
     [self addSeal];
 }
 
@@ -38,7 +40,6 @@ typedef enum kTagGame : long
     [super didReceiveMemoryWarning];
 }
 
-//    [_grid setNeedsDisplay];
 /**
  * グリッドを表示する
  */
@@ -53,7 +54,28 @@ typedef enum kTagGame : long
 }
 
 /**
- * マスの上に貼るシールを表示する
+ * 数を表示する
+ */
+- (void)addNumber
+{
+    Grid* grid = (Grid*)[self.view viewWithTag:kTagGrid];
+    if (grid)
+    {
+        Number* number = [[Number alloc] initWithFrame:self.view.bounds
+                                         originY:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - [grid getSplitSize])/2
+                                       splitSize:[grid getSplitSize]
+                                         mapSize:MAP_SIZE];
+        [number setTag:kTagNumber];
+        [self.view addSubview:number];
+    }
+    else
+    {
+        [self showAlert:@"問題が発生しました" message:@"正常に読み込みができませんでした" delegate:self btnTitle:@"確認"];
+    }
+}
+
+/**
+ * 数の上に貼るシールを表示する
  */
 - (void)addSeal
 {
@@ -74,17 +96,19 @@ typedef enum kTagGame : long
 }
 
 /**
- * タップされた位置を取得する
+ * タップされたシールを剥がす
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
+    Seal* seal = (Seal*)[self.view viewWithTag:kTagSeal];
+    if (seal)
+    {
+        UITouch *touch = [touches anyObject];
+        CGPoint touchpoint = [touch locationInView:self.view];
+        [seal removePosX:touchpoint.x removePosY:touchpoint.y];
+    }
+    
 //    NSLog(@"%@", touch.view);
-    
-    //タッチされた位置を取得
-    CGPoint touchpoint = [touch locationInView:self.view];
-    NSLog(@"x:%lf y:%lf",touchpoint.x, touchpoint.y);
-    
     //得られた位置にあるlayerを取得
 //    CALayer *layer = [self.view.layer hitTest:touchpoint];
 }

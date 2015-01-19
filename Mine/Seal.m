@@ -14,6 +14,7 @@
     float _originY;
     float _splitSize;
     int _num;
+    int map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
 
@@ -28,6 +29,13 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
+        for (int i = 0; i < _num; i++)
+        {
+            for (int j = 0; j < _num; j++)
+            {
+                map[i][j] = 1;
+            }
+        }
     }
     return self;
 }
@@ -48,7 +56,27 @@
     {
         for (int j = 0; j < _num; j++)
         {
-            CGContextFillRect(context, CGRectMake(offsetX + _splitSize/_num*j + 1 , _originY + _splitSize/_num*i + 1, _splitSize/_num - 2, _splitSize/_num - 2));
+            if (map[i][j])
+            {
+                CGContextFillRect(context, CGRectMake(offsetX + _splitSize/_num*i + 1 , _originY + _splitSize/_num*j + 1, _splitSize/_num - 2, _splitSize/_num - 2));
+            }
+        }
+    }
+}
+
+/**
+ * タップされた座標のシールを剥がす
+ */
+- (void)removePosX:(int)posX removePosY:(int)posY
+{
+    if (_originY < posY && posY < _originY + _splitSize)
+    {
+        if (map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)])
+        {
+            map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)] = 0;
+            
+            // 再描画し直す
+            [self setNeedsDisplay];
         }
     }
 }

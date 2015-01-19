@@ -1,5 +1,5 @@
 //
-//  Seal.h
+//  Number.h
 //  Mine
 //
 //  Created by 佐藤 昌樹 on 2015/01/20.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Seal : UIView
+@interface Number : UIView
 
 - (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
-- (void)removePosX:(int)posX removePosY:(int)posY;
 
 @end

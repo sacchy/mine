@@ -21,6 +21,7 @@
 		F1E9D21F1A6C4FB800A5BC33 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D21E1A6C4FB800A5BC33 /* Grid.m */; };
 		F1E9D2221A6D53A500A5BC33 /* Seal.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D2211A6D53A500A5BC33 /* Seal.m */; };
 		F1E9D2281A6D690900A5BC33 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D2271A6D690900A5BC33 /* AlertController.m */; };
+		F1E9D22B1A6D6C5800A5BC33 /* Number.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E9D22A1A6D6C5800A5BC33 /* Number.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		F1E9D2211A6D53A500A5BC33 /* Seal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seal.m; sourceTree = "<group>"; };
 		F1E9D2261A6D690900A5BC33 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		F1E9D2271A6D690900A5BC33 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		F1E9D2291A6D6C5800A5BC33 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
+		F1E9D22A1A6D6C5800A5BC33 /* Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				F1E9D21E1A6C4FB800A5BC33 /* Grid.m */,
 				F1E9D2201A6D53A500A5BC33 /* Seal.h */,
 				F1E9D2211A6D53A500A5BC33 /* Seal.m */,
+				F1E9D2291A6D6C5800A5BC33 /* Number.h */,
+				F1E9D22A1A6D6C5800A5BC33 /* Number.m */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				F1E9D2221A6D53A500A5BC33 /* Seal.m in Sources */,
 				F1C9E8631A6963150028BE1F /* AppDelegate.m in Sources */,
 				F1C9E8901A696FB80028BE1F /* TableController.m in Sources */,
+				F1E9D22B1A6D6C5800A5BC33 /* Number.m in Sources */,
 				F1C9E8601A6963150028BE1F /* main.m in Sources */,
 				F1E9D2281A6D690900A5BC33 /* AlertController.m in Sources */,
 				F1E9D21F1A6C4FB800A5BC33 /* Grid.m in Sources */,

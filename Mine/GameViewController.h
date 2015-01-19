@@ -12,6 +12,7 @@
 @interface GameViewController : AlertController
 
 - (void)addGrid;
+- (void)addNumber;
 - (void)addSeal;
 
 @end

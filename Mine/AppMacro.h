@@ -25,4 +25,5 @@
 #define TABLE_RECT ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? TABLE_IOS_7  : TABLE_IOS_6
 
 #define MAP_SIZE 5
+#define MAX_MAP_SIZE 15
 #endif
