@@ -14,6 +14,7 @@
     float _originY;
     float _splitSize;
     int _num;
+    int _number[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
 
@@ -28,6 +29,7 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
+        [self initNumber];
     }
     return self;
 }
@@ -44,8 +46,62 @@
     {
         for (int j = 0; j < _num; j++)
         {
-            [@"3" drawAtPoint:CGPointMake(offsetX + _splitSize/_num*(j+0.5) - font.pointSize/3, _originY + _splitSize/_num*(i+0.5) - font.pointSize/2) withFont:font];
+            CGPoint point = CGPointMake(offsetX + _splitSize/_num*(i+0.5) - font.pointSize/3, _originY + _splitSize/_num*(j+0.5) - font.pointSize/2);
+            [[NSString stringWithFormat:@"%d",_number[i][j]] drawAtPoint:point withFont:font];
         }
+    }
+}
+
+/**
+ * 各マスに表示する数をセットする
+ */
+- (void)initNumber
+{
+    // 初期化
+    for (int i = 0; i < _num; i++)
+    {
+        for (int j = 0; j < _num; j++)
+        {
+            _number[i][j] = EMPTY;
+        }
+    }
+    
+    // Mineをセット
+    for (int i = 0; i < MAX_MINE_NUM; )
+    {
+        int x = arc4random()%_num, y = arc4random()%_num;
+        if (_number[x][y] == EMPTY)
+        {
+            _number[x][y] = MINE;
+            
+            // 数をセット（MINEの周囲を＋１する）
+            for (int w = x-1; w <= x+1; w++)
+            {
+                for (int h = y-1; h <= y+1; h++)
+                {
+                    if (0 <= w && 0 <= h && w < _num && h < _num && _number[w][h] != MINE)
+                    {
+                        _number[w][h]++;
+                    }
+                }
+            }
+            i++;
+        }
+    }
+}
+
+/**
+ * タップした位置の数を取得する
+ */
+- (int)getNumberByPos:(int)posX posY:(int)posY
+{
+    if (_originY < posY && posY < _originY + _splitSize)
+    {
+        return _number[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)];
+    }
+    else
+    {
+        return ERROR;
     }
 }
 

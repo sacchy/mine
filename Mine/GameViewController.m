@@ -101,16 +101,29 @@ typedef enum kTagGame : long
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     Seal* seal = (Seal*)[self.view viewWithTag:kTagSeal];
-    if (seal)
+    Number* number = (Number*)[self.view viewWithTag:kTagNumber];
+    if (seal && number)
     {
         UITouch *touch = [touches anyObject];
         CGPoint touchpoint = [touch locationInView:self.view];
-        [seal removePosX:touchpoint.x removePosY:touchpoint.y];
+        int num = [number getNumberByPos:touchpoint.x posY:touchpoint.y];
+        if (num == MINE)
+        {
+            [self showAlert:@"ゲームオーバー" message:@"またの挑戦をお待ちしております" delegate:self btnTitle:@"メインへ"];
+            [seal removePosX:touchpoint.x removePosY:touchpoint.y];
+        }
+        else if (num != ERROR)
+        {
+            if ([seal removePosX:touchpoint.x removePosY:touchpoint.y] == GAME_CLEAR)
+            {
+                [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"メインへ"];
+            }
+        }
+        else
+        {
+            NSLog(@"エラー");
+        }
     }
-    
-//    NSLog(@"%@", touch.view);
-    //得られた位置にあるlayerを取得
-//    CALayer *layer = [self.view.layer hitTest:touchpoint];
 }
 
 @end

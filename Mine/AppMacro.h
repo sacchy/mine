@@ -26,4 +26,9 @@
 
 #define MAP_SIZE 5
 #define MAX_MAP_SIZE 15
+#define MAX_MINE_NUM 5
+#define ERROR -2
+#define EMPTY 0
+#define MINE -1
+#define GAME_CLEAR 888
 #endif

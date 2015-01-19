@@ -8,13 +8,14 @@
 
 #import "Seal.h"
 #import "AppMacro.h"
+#import "GameViewController.h"
 
 @interface Seal()
 {
     float _originY;
     float _splitSize;
     int _num;
-    int map[MAX_MAP_SIZE][MAX_MAP_SIZE];
+    int _map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
 
@@ -33,7 +34,7 @@
         {
             for (int j = 0; j < _num; j++)
             {
-                map[i][j] = 1;
+                _map[i][j] = 1;
             }
         }
     }
@@ -56,7 +57,7 @@
     {
         for (int j = 0; j < _num; j++)
         {
-            if (map[i][j])
+            if (_map[i][j])
             {
                 CGContextFillRect(context, CGRectMake(offsetX + _splitSize/_num*i + 1 , _originY + _splitSize/_num*j + 1, _splitSize/_num - 2, _splitSize/_num - 2));
             }
@@ -67,17 +68,41 @@
 /**
  * タップされた座標のシールを剥がす
  */
-- (void)removePosX:(int)posX removePosY:(int)posY
+- (int)removePosX:(int)posX removePosY:(int)posY
 {
     if (_originY < posY && posY < _originY + _splitSize)
     {
-        if (map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)])
+        if (_map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)])
         {
-            map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)] = 0;
+            _map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)] = 0;
             
             // 再描画し直す
             [self setNeedsDisplay];
+            
+            // ゲームクリア判定
+            int count = 0;
+            for (int i = 0; i < _num; i++)
+                for (int j = 0; j < _num; j++)
+                    if (_map[i][j] != 0)
+                        count++;
+            
+            if (count == MAX_MINE_NUM)
+            {
+                return GAME_CLEAR;
+            }
+            else
+            {
+                return ERROR;
+            }
         }
+        else
+        {
+            return ERROR;
+        }
+    }
+    else
+    {
+        return ERROR;
     }
 }
 

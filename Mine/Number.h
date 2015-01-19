@@ -11,5 +11,7 @@
 @interface Number : UIView
 
 - (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
+- (void)initNumber;
+- (int)getNumberByPos:(int)posX posY:(int)posY;
 
 @end
