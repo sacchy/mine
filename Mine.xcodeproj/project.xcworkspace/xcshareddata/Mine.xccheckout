@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4B5B57F6-AF92-4F12-88EC-0530C2384C24</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mine</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>724766721C310BD5198DDE31EBFE10BA02FAD397</key>
+		<string>https://github.com/sacchy/mine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Mine.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>724766721C310BD5198DDE31EBFE10BA02FAD397</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sacchy/mine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>724766721C310BD5198DDE31EBFE10BA02FAD397</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>724766721C310BD5198DDE31EBFE10BA02FAD397</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mine</string>
+		</dict>
+	</array>
+</dict>
+</plist>

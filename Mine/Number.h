@@ -10,7 +10,7 @@
 
 @interface Number : UIView
 
-- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
+- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num maxMineNum:(int)maxMineNum;
 - (void)initNumber;
 - (int)getNumberByPos:(CGPoint)pos;
 - (NSMutableArray*)getMinePos;

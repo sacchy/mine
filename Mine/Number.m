@@ -13,13 +13,14 @@
     float _originY;
     float _splitSize;
     int _num;
+    int _maxMinNum;
     int _number[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
 
 @implementation Number
 
-- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num
+- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num maxMineNum:(int)maxMineNum
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -28,6 +29,7 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
+        _maxMinNum = maxMineNum;
         [self initNumber];
     }
     return self;
@@ -66,7 +68,7 @@
     }
     
     // Mineをセット
-    for (int i = 0; i < MAX_MINE_NUM; )
+    for (int i = 0; i < _maxMinNum; )
     {
         int x = arc4random()%_num, y = arc4random()%_num;
         if (_number[x][y] != MINE)
@@ -116,7 +118,7 @@
         {
             if (_number[i][j] == MINE)
             {
-                [minesArray addObject:[NSValue valueWithCGPoint:CGPointMake((WIN_WIDTH - _splitSize)/2 + _splitSize/_num*i + 1, _originY + _splitSize/_num*j + 1)]];
+                [minesArray addObject:[NSValue valueWithCGPoint:CGPointMake(i, j)]];
             }
         }
     }

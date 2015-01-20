@@ -9,6 +9,7 @@
 #import "TableController.h"
 #import "TableUtil.h"
 #import "LabelUtil.h"
+#import "SettingViewController.h"
 #import "GameViewController.h"
 
 @interface TableController ()
@@ -102,8 +103,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    GameViewController* gameViewController = [[GameViewController alloc] init];
-    [self.navigationController pushViewController:gameViewController animated:YES];
+    [self showPicker];
 }
 
 @end

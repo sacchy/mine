@@ -14,13 +14,14 @@
     float _originY;
     float _splitSize;
     int _num;
+    int _maxMinNum;
     int _map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
 
 @implementation Seal
 
-- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num
+- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num maxMineNum:(int)maxMineNum
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -29,6 +30,8 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
+        _maxMinNum = maxMineNum;
+        
         for (int i = 0; i < _num; i++)
         {
             for (int j = 0; j < _num; j++)
@@ -72,6 +75,7 @@
 
 /**
  * タップされた座標のシールを剥がす
+ * @param pos タップされた座標
  */
 - (int)removePos:(CGPoint)pos
 {
@@ -91,7 +95,7 @@
                     if (_map[i][j] != EMPTY)
                         count++;
             
-            if (count == MAX_MINE_NUM)
+            if (count == _maxMinNum)
             {
                 return GAME_CLEAR;
             }
@@ -112,7 +116,17 @@
 }
 
 /**
+ * 地雷の上に貼られているシールを剥がす
+ * @param pos 地雷の上に貼られているシールの座標（添字）
+ */
+- (void)removeMineSeal:(CGPoint)pos
+{
+    _map[(int)pos.x][(int)pos.y] = EMPTY;
+}
+
+/**
  * 地雷チェックした座標のシールの色を変更する
+ * @param pos タップされた座標
  */
 - (void)checkPos:(CGPoint)pos
 {
@@ -137,6 +151,7 @@
 
 /**
  * 地雷チェックした座標かどうかを取得する
+ * @param pos タップされた座標
  */
 - (BOOL)isCheckPos:(CGPoint)pos
 {

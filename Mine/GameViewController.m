@@ -32,11 +32,13 @@ typedef enum kState : int
 @end
 
 @implementation GameViewController
+@synthesize _mapSize, _mineNum;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    NSLOG(@"map:%ld mine:%ld", (long)_mapSize, (long)_mineNum);
     _state = kStatePlay;
     [self addHeaderBtn];
     [self addGrid];
@@ -68,9 +70,9 @@ typedef enum kState : int
 - (void)addGrid
 {
     Grid* grid = [[Grid alloc] initWithFrame:self.view.bounds
-                           headerHeight:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT
-                             mainHeight:WIN_AVARABLE_VIEW_HEIGHT
-                                mapSize:MAP_SIZE];
+                                headerHeight:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT
+                                  mainHeight:WIN_AVARABLE_VIEW_HEIGHT
+                                     mapSize:_mapSize];
     [grid setTag:kTagGrid];
     [self.view addSubview:grid];
 }
@@ -84,9 +86,10 @@ typedef enum kState : int
     if (grid)
     {
         Number* number = [[Number alloc] initWithFrame:self.view.bounds
-                                         originY:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - [grid getSplitSize])/2
-                                       splitSize:[grid getSplitSize]
-                                         mapSize:MAP_SIZE];
+                                               originY:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - [grid getSplitSize])/2
+                                             splitSize:[grid getSplitSize]
+                                               mapSize:_mapSize
+                                            maxMineNum:_mineNum];
         [number setTag:kTagNumber];
         [self.view addSubview:number];
     }
@@ -105,9 +108,10 @@ typedef enum kState : int
     if (grid)
     {
         Seal* seal = [[Seal alloc] initWithFrame:self.view.bounds
-                                    originY:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - [grid getSplitSize])/2
-                                  splitSize:[grid getSplitSize]
-                                    mapSize:MAP_SIZE];
+                                         originY:STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - [grid getSplitSize])/2
+                                       splitSize:[grid getSplitSize]
+                                         mapSize:(int)_mapSize
+                                        maxMineNum:_mineNum];
         [seal setTag:kTagSeal];
         [self.view addSubview:seal];
     }
@@ -164,8 +168,9 @@ typedef enum kState : int
             NSMutableArray* removePosArray = [number getMinePos];
             for (int i = 0; i < removePosArray.count; i++)
             {
-                [seal removePos:[removePosArray[i] CGPointValue]];
+                [seal removeMineSeal:[removePosArray[i] CGPointValue]];
             }
+            [seal setNeedsDisplay];
             self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
         }
         else if (num != ERROR)
