@@ -3,7 +3,7 @@
 //  Mine
 //
 //  Created by 佐藤 昌樹 on 2015/01/17.
-//  Copyright (c) 2015年 sacchy. All rights reserved.
+//  Copyright (c) 2015年 Sacchy. All rights reserved.
 //
 
 #import "TableUtil.h"
@@ -74,7 +74,7 @@
     switch (type)
     {
         case Table_Main:
-            row = 4;
+            row = 1;
             break;
         default:
             break;
@@ -111,9 +111,6 @@
     {
         case Table_Main:
             [data addObject:@"Lebel 1に挑戦する？"];
-            [data addObject:@"Lebel 2に挑戦する？"];
-            [data addObject:@"Lebel 3に挑戦する？"];
-            [data addObject:@"Lebel 4に挑戦する？"];
             break;
         default:
             break;
