@@ -45,8 +45,16 @@
     {
         for (int j = 0; j < _num; j++)
         {
-            CGPoint point = CGPointMake(offsetX + _splitSize/_num*(i+0.5) - font.pointSize/3, _originY + _splitSize/_num*(j+0.5) - font.pointSize/2);
-            [[NSString stringWithFormat:@"%d",_number[i][j]] drawAtPoint:point withFont:font];
+            if (_number[i][j] == MINE)
+            {
+                CGPoint point = CGPointMake(offsetX + _splitSize/_num*(i+0.5) - font.pointSize/2, _originY + _splitSize/_num*(j+0.5) - font.pointSize/2);
+                [@"爆" drawAtPoint:point withFont:font];
+            }
+            else if (_number[i][j] != EMPTY)
+            {
+                CGPoint point = CGPointMake(offsetX + _splitSize/_num*(i+0.5) - font.pointSize/3.5, _originY + _splitSize/_num*(j+0.5) - font.pointSize/2);
+                [[NSString stringWithFormat:@"%d",_number[i][j]] drawAtPoint:point withFont:font];
+            }
         }
     }
 }
