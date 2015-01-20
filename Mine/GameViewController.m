@@ -2,7 +2,7 @@
 //  GameViewController.m
 //  Mine
 //
-//  Created by 佐藤 昌樹 on 2015/01/19.
+//  Created by Sacchy on 2015/01/19.
 //  Copyright (c) 2015年 sacchy. All rights reserved.
 //
 
@@ -21,6 +21,7 @@ typedef enum kTagGame : long
 typedef enum kState : int
 {
     kStatePlay = 1,
+    kStateCheckMode,
     kStateEnd,
 } kState;
 
@@ -37,6 +38,7 @@ typedef enum kState : int
     [super viewDidLoad];
 
     _state = kStatePlay;
+    [self addHeaderBtn];
     [self addGrid];
     [self addNumber];
     [self addSeal];
@@ -45,6 +47,19 @@ typedef enum kState : int
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+/**
+ * 地雷チェックボタンを追加
+ */
+- (void)addHeaderBtn
+{
+    UIBarButtonItem *modeChangeButton = [[UIBarButtonItem alloc] initWithTitle:@"地雷チェックモードに変更"
+                                                                  style:UIBarButtonItemStyleDone
+                                                                 target:self
+                                                                 action:@selector(btnCallBack)];
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationItem.rightBarButtonItem = modeChangeButton;
 }
 
 /**
@@ -103,6 +118,29 @@ typedef enum kState : int
 }
 
 /**
+ * 地雷チェックモードと地雷チェックモードの解除を実行
+ */
+- (void)btnCallBack
+{
+    if (_state == kStateEnd)
+    {
+        return;
+    }
+    else if (_state != kStateCheckMode)
+    {
+        _state = kStateCheckMode;
+        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+        self.navigationItem.rightBarButtonItem.title = @"地雷チェックモード解除";
+    }
+    else
+    {
+        _state = kStatePlay;
+        self.navigationController.navigationBar.tintColor = nil;
+        self.navigationItem.rightBarButtonItem.title = @"地雷チェックモードに変更";
+    }
+}
+
+/**
  * タップされたシールを剥がす
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -117,25 +155,33 @@ typedef enum kState : int
         if (num == MINE)
         {
             _state = kStateEnd;
-            [self showAlert:@"ゲームオーバー" message:@"またの挑戦をお待ちしております" delegate:self btnTitle:@"メインへ"];
+            [self showAlert:@"ゲームオーバー" message:@"またの挑戦をお待ちしております" delegate:self btnTitle:@"確認"];
             NSMutableArray* removePosArray = [number getMinePos];
             for (int i = 0; i < removePosArray.count; i++)
             {
                 [seal removePos:[removePosArray[i] CGPointValue]];
             }
+            self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
         }
         else if (num != ERROR)
         {
             if ([seal removePos:CGPointMake(touchpoint.x, touchpoint.y)] == GAME_CLEAR)
             {
                 _state = kStateEnd;
-                [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"メインへ"];
+                [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"確認"];
+                self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
             }
         }
         else
         {
             NSLOG(@"エラー");
         }
+    }
+    else if (seal && _state == kStateCheckMode)
+    {
+        UITouch *touch = [touches anyObject];
+        CGPoint touchpoint = [touch locationInView:self.view];
+        [seal checkPos:CGPointMake(touchpoint.x, touchpoint.y)];
     }
     else
     {

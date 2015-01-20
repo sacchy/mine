@@ -12,5 +12,6 @@
 
 - (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
 - (int)removePos:(CGPoint)pos;
+- (void)checkPos:(CGPoint)pos;
 
 @end

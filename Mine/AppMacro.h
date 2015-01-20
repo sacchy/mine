@@ -2,8 +2,8 @@
 //  AppMacro.h
 //  Mine
 //
-//  Created by 佐藤 昌樹 on 2015/01/17.
-//  Copyright (c) 2015年 sacchy. All rights reserved.
+//  Created by Sacchy on 2015/01/17.
+//  Copyright (c) 2015年 Sacchy. All rights reserved.
 //
 
 #ifndef Mine_AppMacro_h
@@ -25,12 +25,14 @@
 #define TABLE_RECT ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? TABLE_IOS_7  : TABLE_IOS_6
 
 //_/_/_/ Game Setting /_/_/_/
-//#undef DEBUG
+#undef DEBUG
 #define MAP_SIZE 5
 #define MAX_MAP_SIZE 50
 #define MAX_MINE_NUM 5
 #define ERROR -2
-#define EMPTY 0
 #define MINE -1
+#define EMPTY 0
+#define SEAL 1
+#define CHECK 2
 #define GAME_CLEAR 888
 #endif

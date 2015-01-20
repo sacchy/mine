@@ -2,8 +2,8 @@
 //  Grid.m
 //  Mine
 //
-//  Created by 佐藤 昌樹 on 2015/01/19.
-//  Copyright (c) 2015年 sacchy. All rights reserved.
+//  Created by Sacchy on 2015/01/19.
+//  Copyright (c) 2015年 Sacchy. All rights reserved.
 //
 
 #import "Grid.h"

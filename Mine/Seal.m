@@ -33,7 +33,7 @@
         {
             for (int j = 0; j < _num; j++)
             {
-                _map[i][j] = 1;
+                _map[i][j] = SEAL;
             }
         }
     }
@@ -45,19 +45,25 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     // グリッドを表示
-    CGFloat color[4] = {0.5f, 0.0f, 1.0f, 1.0f};
+    CGFloat emptyColor[4] = {0.5f, 0.0f, 1.0f, 1.0f};
+    CGFloat checkColor[4] = {0.8f, 0.0f, 0.7f, 1.0f};
 
     // オフセット
     float offsetX = (WIN_WIDTH - _splitSize)/2;
 
     // シールを貼る
-    CGContextSetFillColor(context, color);
     for (int i = 0; i < _num; i++)
     {
         for (int j = 0; j < _num; j++)
         {
-            if (_map[i][j])
+            if (_map[i][j] == SEAL)
             {
+                CGContextSetFillColor(context, emptyColor);
+                CGContextFillRect(context, CGRectMake(offsetX + _splitSize/_num*i + 1 , _originY + _splitSize/_num*j + 1, _splitSize/_num - 2, _splitSize/_num - 2));
+            }
+            else if (_map[i][j] == CHECK)
+            {
+                CGContextSetFillColor(context, checkColor);
                 CGContextFillRect(context, CGRectMake(offsetX + _splitSize/_num*i + 1 , _originY + _splitSize/_num*j + 1, _splitSize/_num - 2, _splitSize/_num - 2));
             }
         }
@@ -71,9 +77,10 @@
 {
     if (_originY < pos.y && pos.y < _originY + _splitSize)
     {
-        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)])
+        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == SEAL ||
+            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == CHECK)
         {
-            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = 0;
+            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = EMPTY;
             
             // 再描画し直す
             [self setNeedsDisplay];
@@ -82,7 +89,7 @@
             int count = 0;
             for (int i = 0; i < _num; i++)
                 for (int j = 0; j < _num; j++)
-                    if (_map[i][j] != 0)
+                    if (_map[i][j] != EMPTY)
                         count++;
             
             if (count == MAX_MINE_NUM)
@@ -102,6 +109,23 @@
     else
     {
         return ERROR;
+    }
+}
+
+/**
+ * 地雷チェックした座標のシールの色を変更する
+ */
+- (void)checkPos:(CGPoint)pos
+{
+    if (_originY < pos.y && pos.y < _originY + _splitSize)
+    {
+        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == SEAL)
+        {
+            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = CHECK;
+            
+            // 再描画し直す
+            [self setNeedsDisplay];
+        }
     }
 }
 
