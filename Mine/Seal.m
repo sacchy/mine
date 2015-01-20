@@ -125,6 +125,13 @@
             // 再描画し直す
             [self setNeedsDisplay];
         }
+        else if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == CHECK)
+        {
+            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = SEAL;
+            
+            // 再描画し直す
+            [self setNeedsDisplay];
+        }
     }
 }
 
