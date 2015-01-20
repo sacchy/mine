@@ -11,6 +11,6 @@
 @interface Seal : UIView
 
 - (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
-- (int)removePosX:(int)posX removePosY:(int)posY;
+- (int)removePos:(CGPoint)pos;
 
 @end

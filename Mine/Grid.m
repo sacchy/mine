@@ -7,7 +7,6 @@
 //
 
 #import "Grid.h"
-#import "AppMacro.h"
 
 @interface Grid()
 {
@@ -76,7 +75,7 @@
             return size;
         }
     }
-    NSLog(@"警告：デフォルト値を使います");
+    NSLOG(@"警告：デフォルト値を使います");
     return 40;
 }
 

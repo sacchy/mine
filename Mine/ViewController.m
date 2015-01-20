@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "TableUtil.h"
-#import "AppMacro.h"
 
 @interface ViewController ()
 {

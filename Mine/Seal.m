@@ -7,7 +7,6 @@
 //
 
 #import "Seal.h"
-#import "AppMacro.h"
 #import "GameViewController.h"
 
 @interface Seal()
@@ -68,13 +67,13 @@
 /**
  * タップされた座標のシールを剥がす
  */
-- (int)removePosX:(int)posX removePosY:(int)posY
+- (int)removePos:(CGPoint)pos
 {
-    if (_originY < posY && posY < _originY + _splitSize)
+    if (_originY < pos.y && pos.y < _originY + _splitSize)
     {
-        if (_map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)])
+        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)])
         {
-            _map[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)] = 0;
+            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = 0;
             
             // 再描画し直す
             [self setNeedsDisplay];

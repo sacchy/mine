@@ -65,6 +65,7 @@
 		F1E9D2271A6D690900A5BC33 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		F1E9D2291A6D6C5800A5BC33 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
 		F1E9D22A1A6D6C5800A5BC33 /* Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
+		F1E9D22C1A6E246000A5BC33 /* Mine-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mine-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +127,7 @@
 			children = (
 				F1C9E85E1A6963150028BE1F /* Info.plist */,
 				F1C9E85F1A6963150028BE1F /* main.m */,
+				F1E9D22C1A6E246000A5BC33 /* Mine-prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -426,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MASAKI SATOH (74MVQAL8J9)";
+				GCC_PREFIX_HEADER = "Mine/Mine-prefix.pch";
 				INFOPLIST_FILE = Mine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -439,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MASAKI SATOH (92CAL6YW8F)";
+				GCC_PREFIX_HEADER = "Mine/Mine-prefix.pch";
 				INFOPLIST_FILE = Mine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

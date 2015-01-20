@@ -7,7 +7,6 @@
 //
 
 #import "GameViewController.h"
-#import "AppMacro.h"
 #import "Grid.h"
 #import "Number.h"
 #import "Seal.h"
@@ -19,8 +18,15 @@ typedef enum kTagGame : long
     kTagSeal,
 } kTagGame;
 
+typedef enum kState : int
+{
+    kStatePlay = 1,
+    kStateEnd,
+} kState;
+
 @interface GameViewController()
 {
+    kState _state;
 }
 @end
 
@@ -29,7 +35,8 @@ typedef enum kTagGame : long
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    _state = kStatePlay;
     [self addGrid];
     [self addNumber];
     [self addSeal];
@@ -102,27 +109,37 @@ typedef enum kTagGame : long
 {
     Seal* seal = (Seal*)[self.view viewWithTag:kTagSeal];
     Number* number = (Number*)[self.view viewWithTag:kTagNumber];
-    if (seal && number)
+    if (seal && number && _state == kStatePlay)
     {
         UITouch *touch = [touches anyObject];
         CGPoint touchpoint = [touch locationInView:self.view];
-        int num = [number getNumberByPos:touchpoint.x posY:touchpoint.y];
+        int num = [number getNumberByPos:CGPointMake(touchpoint.x, touchpoint.y)];
         if (num == MINE)
         {
+            _state = kStateEnd;
             [self showAlert:@"ゲームオーバー" message:@"またの挑戦をお待ちしております" delegate:self btnTitle:@"メインへ"];
-            [seal removePosX:touchpoint.x removePosY:touchpoint.y];
+            NSMutableArray* removePosArray = [number getMinePos];
+            for (int i = 0; i < removePosArray.count; i++)
+            {
+                [seal removePos:[removePosArray[i] CGPointValue]];
+            }
         }
         else if (num != ERROR)
         {
-            if ([seal removePosX:touchpoint.x removePosY:touchpoint.y] == GAME_CLEAR)
+            if ([seal removePos:CGPointMake(touchpoint.x, touchpoint.y)] == GAME_CLEAR)
             {
+                _state = kStateEnd;
                 [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"メインへ"];
             }
         }
         else
         {
-            NSLog(@"エラー");
+            NSLOG(@"エラー");
         }
+    }
+    else
+    {
+        NSLOG(@"ゲームは終了しています");
     }
 }
 

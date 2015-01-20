@@ -7,7 +7,6 @@
 //
 
 #import "TableController.h"
-#import "AppMacro.h"
 #import "TableUtil.h"
 #import "LabelUtil.h"
 #import "GameViewController.h"

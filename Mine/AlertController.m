@@ -26,7 +26,7 @@
     {
         case 0:
             //１番目のボタンが押されたときの処理を記述する
-            NSLog(@"click");
+//                [self.navigationController popViewControllerAnimated:YES];
             break;
         case 1:
             //２番目のボタンが押されたときの処理を記述する

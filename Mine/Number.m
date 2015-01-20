@@ -7,7 +7,6 @@
 //
 
 #import "Number.h"
-#import "AppMacro.h"
 
 @interface Number()
 {
@@ -58,9 +57,9 @@
 - (void)initNumber
 {
     // 初期化
-    for (int i = 0; i < _num; i++)
+    for (int i = 0; i < MAX_MAP_SIZE; i++)
     {
-        for (int j = 0; j < _num; j++)
+        for (int j = 0; j < MAX_MAP_SIZE; j++)
         {
             _number[i][j] = EMPTY;
         }
@@ -70,7 +69,7 @@
     for (int i = 0; i < MAX_MINE_NUM; )
     {
         int x = arc4random()%_num, y = arc4random()%_num;
-        if (_number[x][y] == EMPTY)
+        if (_number[x][y] != MINE)
         {
             _number[x][y] = MINE;
             
@@ -93,16 +92,35 @@
 /**
  * タップした位置の数を取得する
  */
-- (int)getNumberByPos:(int)posX posY:(int)posY
+- (int)getNumberByPos:(CGPoint)pos
 {
-    if (_originY < posY && posY < _originY + _splitSize)
+    if (_originY < pos.y && pos.y < _originY + _splitSize)
     {
-        return _number[posX/(int)(_splitSize/_num)][(int)(posY - _originY)/(int)(_splitSize/_num)];
+        return _number[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)];
     }
     else
     {
         return ERROR;
     }
+}
+
+/**
+ * 地雷の位置を全て取得する
+ */
+- (NSMutableArray*)getMinePos
+{
+    NSMutableArray* minesArray = [NSMutableArray array];
+    for (int i = 0; i < _num; i++)
+    {
+        for (int j = 0; j < _num; j++)
+        {
+            if (_number[i][j] == MINE)
+            {
+                [minesArray addObject:[NSValue valueWithCGPoint:CGPointMake((WIN_WIDTH - _splitSize)/2 + _splitSize/_num*i + 1, _originY + _splitSize/_num*j + 1)]];
+            }
+        }
+    }
+    return minesArray;
 }
 
 @end
