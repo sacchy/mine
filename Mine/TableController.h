@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerViewController.h"
 
-@interface TableController : UIViewController
+@interface TableController : PickerViewController
 <
     UITableViewDataSource,
     UITableViewDelegate

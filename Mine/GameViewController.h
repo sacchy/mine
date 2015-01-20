@@ -17,4 +17,7 @@
 - (void)addSeal;
 - (void)btnCallBack;
 
+@property (readwrite) int _mapSize;
+@property (readwrite) int _mineNum;
+
 @end

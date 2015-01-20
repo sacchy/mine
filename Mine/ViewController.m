@@ -7,12 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "TableUtil.h"
 
 @interface ViewController ()
-{
-    UITableView* _tableview;
-}
+
 @end
 
 @implementation ViewController

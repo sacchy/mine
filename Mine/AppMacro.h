@@ -25,10 +25,11 @@
 #define TABLE_RECT ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? TABLE_IOS_7  : TABLE_IOS_6
 
 //_/_/_/ Game Setting /_/_/_/
-//#undef DEBUG
-#define MAP_SIZE 5
+#undef DEBUG
 #define MAX_MAP_SIZE 50
-#define MAX_MINE_NUM 5
+#define MIN_MAP_SIZE 2
+#define INIT_MINE_NUM 4
+#define MIN_MINE_NUM 1
 #define ERROR -2
 #define MINE -1
 #define EMPTY 0

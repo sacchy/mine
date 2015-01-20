@@ -10,8 +10,9 @@
 
 @interface Seal : UIView
 
-- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num;
+- (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num maxMineNum:(int)maxMineNum;
 - (int)removePos:(CGPoint)pos;
+- (void)removeMineSeal:(CGPoint)pos;
 - (void)checkPos:(CGPoint)pos;
 - (BOOL)isCheckPos:(CGPoint)pos;
 
