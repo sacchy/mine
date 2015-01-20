@@ -152,7 +152,12 @@ typedef enum kState : int
         UITouch *touch = [touches anyObject];
         CGPoint touchpoint = [touch locationInView:self.view];
         int num = [number getNumberByPos:CGPointMake(touchpoint.x, touchpoint.y)];
-        if (num == MINE)
+        
+        if ([seal isCheckPos:CGPointMake(touchpoint.x, touchpoint.y)] == YES)
+        {
+            return;
+        }
+        else if (num == MINE)
         {
             _state = kStateEnd;
             [self showAlert:@"ゲームオーバー" message:@"またの挑戦をお待ちしております" delegate:self btnTitle:@"確認"];
