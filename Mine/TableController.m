@@ -7,9 +7,9 @@
 //
 
 #import "TableController.h"
-#import "AppMacro.h"
 #import "TableUtil.h"
 #import "LabelUtil.h"
+#import "GameViewController.h"
 
 @interface TableController ()
 {
@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"Levelを選択して下さい";
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +81,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundColor = [UIColor clearColor];
         
-        _label = [[LabelUtil alloc] createLabel:CGRectMake(10.0, [[TableUtil alloc] getTableCellHeight:Table_Main]/4, WIN_WIDTH, 20.0) labelType:Label_Main];
+        _label = [[LabelUtil alloc] createLabel:CGRectMake(10.0, [[TableUtil alloc] getTableCellHeight:Table_Main]/4, WIN_VIEW_WIDTH, 20.0) labelType:Label_Main];
         _label.tag = 1;
         [cell.contentView addSubview:_label];
     }
@@ -101,9 +102,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSLog(@"%ld",(long)indexPath.row);
+    GameViewController* gameViewController = [[GameViewController alloc] init];
+    [self.navigationController pushViewController:gameViewController animated:YES];
 }
-
 
 @end

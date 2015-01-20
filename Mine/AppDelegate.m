@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  Mine
 //
-//  Created by 佐藤 昌樹 on 2015/01/17.
-//  Copyright (c) 2015年 sacchy. All rights reserved.
+//  Created by Sacchy on 2015/01/17.
+//  Copyright (c) 2015年 Sacchy. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +16,13 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

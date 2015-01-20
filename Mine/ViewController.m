@@ -7,9 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "TableUtil.h"
 
 @interface ViewController ()
-
+{
+    UITableView* _tableview;
+}
 @end
 
 @implementation ViewController
@@ -18,6 +21,7 @@
 {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor whiteColor];
     [self addTable];
 }
 
@@ -25,7 +29,5 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
 
 @end
