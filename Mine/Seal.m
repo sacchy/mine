@@ -77,8 +77,7 @@
 {
     if (_originY < pos.y && pos.y < _originY + _splitSize)
     {
-        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == SEAL ||
-            _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == CHECK)
+        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == SEAL)
         {
             _map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] = EMPTY;
             
@@ -126,6 +125,28 @@
             // 再描画し直す
             [self setNeedsDisplay];
         }
+    }
+}
+
+/**
+ * 地雷チェックした座標かどうかを取得する
+ */
+- (BOOL)isCheckPos:(CGPoint)pos
+{
+    if (_originY < pos.y && pos.y < _originY + _splitSize)
+    {
+        if (_map[(int)pos.x/(int)(_splitSize/_num)][(int)(pos.y - _originY)/(int)(_splitSize/_num)] == CHECK)
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else
+    {
+        return NO;
     }
 }
 
