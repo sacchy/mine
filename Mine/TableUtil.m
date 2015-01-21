@@ -110,7 +110,7 @@
     switch (type)
     {
         case Table_Main:
-            [data addObject:@"Level3に挑戦する？"];
+            [data addObject:@"Level4に挑戦する？"];
             break;
         default:
             break;

@@ -114,6 +114,11 @@ typedef enum kState : int
                                         maxMineNum:_mineNum];
         [seal setTag:kTagSeal];
         [self.view addSubview:seal];
+        
+        if ([seal getEmptyCount] == _mineNum)
+        {
+            [self gameClear];
+        }
     }
     else
     {
@@ -151,7 +156,9 @@ typedef enum kState : int
 {
     Seal* seal = (Seal*)[self.view viewWithTag:kTagSeal];
     Number* number = (Number*)[self.view viewWithTag:kTagNumber];
-    if (seal && number && _state == kStatePlay)
+    Grid* grid = (Grid*)[self.view viewWithTag:kTagGrid];
+    
+    if (seal && number && grid && _state == kStatePlay)
     {
         UITouch *touch = [touches anyObject];
         CGPoint touchpoint = [touch locationInView:self.view];
@@ -168,18 +175,32 @@ typedef enum kState : int
             NSMutableArray* removePosArray = [number getMinePos];
             for (int i = 0; i < removePosArray.count; i++)
             {
-                [seal removeMineSeal:[removePosArray[i] CGPointValue]];
+                [seal removeMineSealByIdx:[removePosArray[i] CGPointValue]];
             }
             [seal setNeedsDisplay];
             self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
+        }
+        else if (num == EMPTY)
+        {
+            // タップされた座標を添字に変換
+            int x = (int)touchpoint.x/((int)[grid getSplitSize]/_mapSize);
+            int y = ((int)touchpoint.y - (STATUSBAR_HEIGHT + NAVIGATIONBAR_HEIGHT + (WIN_AVARABLE_VIEW_HEIGHT - (int)[grid getSplitSize])/2))/((int)[grid getSplitSize]/_mapSize);
+            NSMutableArray* removePosArray = [number autoCheckNumber:CGPointMake(x, y)];
+            for (int i = 0; i < removePosArray.count; i++)
+            {
+                if ([seal removePosByIdx:[removePosArray[i] CGPointValue]] == GAME_CLEAR)
+                {
+                    NSLOG(@"clear x:%f y:%f",[removePosArray[i] CGPointValue].x,[removePosArray[i] CGPointValue].y);
+                    [self gameClear];
+                }
+            }
+            [seal setNeedsDisplay];
         }
         else if (num != ERROR)
         {
             if ([seal removePos:CGPointMake(touchpoint.x, touchpoint.y)] == GAME_CLEAR)
             {
-                _state = kStateEnd;
-                [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"確認"];
-                self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
+                [self gameClear];
             }
         }
         else
@@ -197,6 +218,16 @@ typedef enum kState : int
     {
         NSLOG(@"ゲームは終了しています");
     }
+}
+
+/**
+ * ゲームクリアアラートを表示する
+ */
+- (void)gameClear
+{
+    _state = kStateEnd;
+    [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"確認"];
+    self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
 }
 
 @end
