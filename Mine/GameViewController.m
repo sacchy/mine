@@ -20,7 +20,8 @@ typedef enum kTagGame : long
 
 typedef enum kState : int
 {
-    kStatePlay = 1,
+    kStateFirstPlay = 1,
+    kStatePlay,
     kStateCheckMode,
     kStateEnd,
 } kState;
@@ -39,7 +40,7 @@ typedef enum kState : int
     [super viewDidLoad];
 
     NSLOG(@"map:%ld mine:%ld", (long)_mapSize, (long)_mineNum);
-    _state = kStatePlay;
+    _state = kStateFirstPlay;
     [self addHeaderBtn];
     [self addGrid];
     [self addNumber];
@@ -158,11 +159,20 @@ typedef enum kState : int
     Number* number = (Number*)[self.view viewWithTag:kTagNumber];
     Grid* grid = (Grid*)[self.view viewWithTag:kTagGrid];
     
-    if (seal && number && grid && _state == kStatePlay)
+    if (seal && number && grid && (_state == kStatePlay || _state == kStateFirstPlay))
     {
         UITouch *touch = [touches anyObject];
         CGPoint touchpoint = [touch locationInView:self.view];
         int num = [number getNumberByPos:CGPointMake(touchpoint.x, touchpoint.y)];
+
+        // 最初にタップするマスは必ず地雷以外とする処理
+        while (num == MINE && _state == kStateFirstPlay)
+        {
+            [number initNumber];
+            [number setNeedsDisplay];
+            num = [number getNumberByPos:CGPointMake(touchpoint.x, touchpoint.y)];
+        }
+        _state = kStatePlay;
         
         if ([seal isCheckPos:CGPointMake(touchpoint.x, touchpoint.y)] == YES)
         {
