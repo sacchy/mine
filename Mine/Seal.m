@@ -91,7 +91,7 @@
             // 再描画し直す
             [self setNeedsDisplay];
             
-            if ([self getEmptyCount] == _maxMineNum)
+            if ([self getNotEmptyCount] == _maxMineNum)
             {
                 return GAME_CLEAR;
             }
@@ -120,7 +120,7 @@
 {
     _map[(int)pos.x][(int)pos.y] = EMPTY;
 
-    if ([self getEmptyCount] == _maxMineNum)
+    if ([self getNotEmptyCount] == _maxMineNum)
     {
         return GAME_CLEAR;
     }
@@ -192,7 +192,7 @@
  * 剥がされていないシール数を取得する
  * @return 剥がされていないシール数を返す
  */
-- (int)getEmptyCount
+- (int)getNotEmptyCount
 {
     int count = 0;
     for (int i = 0; i < _num; i++)
