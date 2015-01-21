@@ -16,6 +16,7 @@
 - (void)addNumber;
 - (void)addSeal;
 - (void)btnCallBack;
+- (void)gameClear;
 
 @property (readwrite) int _mapSize;
 @property (readwrite) int _mineNum;

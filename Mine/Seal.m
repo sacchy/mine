@@ -14,7 +14,7 @@
     float _originY;
     float _splitSize;
     int _num;
-    int _maxMinNum;
+    int _maxMineNum;
     int _map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 }
 @end
@@ -30,7 +30,7 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
-        _maxMinNum = maxMineNum;
+        _maxMineNum = maxMineNum;
         
         for (int i = 0; i < _num; i++)
         {
@@ -88,14 +88,7 @@
             // 再描画し直す
             [self setNeedsDisplay];
             
-            // ゲームクリア判定
-            int count = 0;
-            for (int i = 0; i < _num; i++)
-                for (int j = 0; j < _num; j++)
-                    if (_map[i][j] != EMPTY)
-                        count++;
-            
-            if (count == _maxMinNum)
+            if ([self getEmptyCount] == _maxMineNum)
             {
                 return GAME_CLEAR;
             }
@@ -170,6 +163,21 @@
     {
         return NO;
     }
+}
+
+/**
+ * 剥がされていないシール数を取得する
+ * @return 剥がされていないシール数を返す
+ */
+- (int)getEmptyCount
+{
+    int count = 0;
+    for (int i = 0; i < _num; i++)
+        for (int j = 0; j < _num; j++)
+            if (_map[i][j] != EMPTY)
+                count++;
+    
+    return count;
 }
 
 @end

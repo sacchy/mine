@@ -114,6 +114,11 @@ typedef enum kState : int
                                         maxMineNum:_mineNum];
         [seal setTag:kTagSeal];
         [self.view addSubview:seal];
+        
+        if ([seal getEmptyCount] == _mineNum)
+        {
+            [self gameClear];
+        }
     }
     else
     {
@@ -177,9 +182,7 @@ typedef enum kState : int
         {
             if ([seal removePos:CGPointMake(touchpoint.x, touchpoint.y)] == GAME_CLEAR)
             {
-                _state = kStateEnd;
-                [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"確認"];
-                self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
+                [self gameClear];
             }
         }
         else
@@ -197,6 +200,16 @@ typedef enum kState : int
     {
         NSLOG(@"ゲームは終了しています");
     }
+}
+
+/**
+ * ゲームクリアアラートを表示する
+ */
+- (void)gameClear
+{
+    _state = kStateEnd;
+    [self showAlert:@"ゲームクリア" message:@"おめでとうございます" delegate:self btnTitle:@"確認"];
+    self.navigationItem.rightBarButtonItem.title = @"お疲れ様でした";
 }
 
 @end

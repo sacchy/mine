@@ -15,5 +15,6 @@
 - (void)removeMineSeal:(CGPoint)pos;
 - (void)checkPos:(CGPoint)pos;
 - (BOOL)isCheckPos:(CGPoint)pos;
+- (int)getEmptyCount;
 
 @end
