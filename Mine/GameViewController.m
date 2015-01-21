@@ -115,7 +115,7 @@ typedef enum kState : int
         [seal setTag:kTagSeal];
         [self.view addSubview:seal];
         
-        if ([seal getEmptyCount] == _mineNum)
+        if ([seal getNotEmptyCount] == _mineNum)
         {
             [self gameClear];
         }
