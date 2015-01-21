@@ -14,5 +14,8 @@
 - (void)initNumber;
 - (int)getNumberByPos:(CGPoint)pos;
 - (NSMutableArray*)getMinePos;
+- (NSMutableArray*)autoCheckNumber:(CGPoint)pos;
+- (BOOL)isExistSearchPos:(CGPoint)pos;
+- (BOOL)isExistFinishPos:(CGPoint)pos;
 
 @end

@@ -12,8 +12,9 @@
 
 - (id)initWithFrame:(CGRect)frame originY:(float)originY splitSize:(float)splitSize mapSize:(int)num maxMineNum:(int)maxMineNum;
 - (int)removePos:(CGPoint)pos;
-- (void)removeMineSeal:(CGPoint)pos;
+- (int)removePosByIdx:(CGPoint)pos;
+- (void)removeMineSealByIdx:(CGPoint)pos;
 - (void)checkPos:(CGPoint)pos;
 - (BOOL)isCheckPos:(CGPoint)pos;
-
+- (int)getEmptyCount;
 @end

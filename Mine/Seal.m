@@ -14,8 +14,10 @@
     float _originY;
     float _splitSize;
     int _num;
-    int _maxMinNum;
+    int _maxMineNum;
     int _map[MAX_MAP_SIZE][MAX_MAP_SIZE];
+    NSMutableArray* searchPos;
+    NSMutableArray* finishPos;
 }
 @end
 
@@ -30,7 +32,7 @@
         _originY = originY;
         _splitSize = splitSize;
         _num = num;
-        _maxMinNum = maxMineNum;
+        _maxMineNum = maxMineNum;
         
         for (int i = 0; i < _num; i++)
         {
@@ -76,6 +78,7 @@
 /**
  * タップされた座標のシールを剥がす
  * @param pos タップされた座標
+ * @return ゲームがクリアされているかどうか
  */
 - (int)removePos:(CGPoint)pos
 {
@@ -88,14 +91,7 @@
             // 再描画し直す
             [self setNeedsDisplay];
             
-            // ゲームクリア判定
-            int count = 0;
-            for (int i = 0; i < _num; i++)
-                for (int j = 0; j < _num; j++)
-                    if (_map[i][j] != EMPTY)
-                        count++;
-            
-            if (count == _maxMinNum)
+            if ([self getEmptyCount] == _maxMineNum)
             {
                 return GAME_CLEAR;
             }
@@ -116,10 +112,29 @@
 }
 
 /**
+ * 添字の位置にあるシールを剥がす
+ * @param pos 添字の位置
+ * @return ゲームがクリアされているかどうか
+ */
+- (int)removePosByIdx:(CGPoint)pos
+{
+    _map[(int)pos.x][(int)pos.y] = EMPTY;
+
+    if ([self getEmptyCount] == _maxMineNum)
+    {
+        return GAME_CLEAR;
+    }
+    else
+    {
+        return ERROR;
+    }
+}
+
+/**
  * 地雷の上に貼られているシールを剥がす
  * @param pos 地雷の上に貼られているシールの座標（添字）
  */
-- (void)removeMineSeal:(CGPoint)pos
+- (void)removeMineSealByIdx:(CGPoint)pos
 {
     _map[(int)pos.x][(int)pos.y] = EMPTY;
 }
@@ -152,6 +167,7 @@
 /**
  * 地雷チェックした座標かどうかを取得する
  * @param pos タップされた座標
+ * @return YES:チェックした座標である NO:チェックした座標でない
  */
 - (BOOL)isCheckPos:(CGPoint)pos
 {
@@ -170,6 +186,21 @@
     {
         return NO;
     }
+}
+
+/**
+ * 剥がされていないシール数を取得する
+ * @return 剥がされていないシール数を返す
+ */
+- (int)getEmptyCount
+{
+    int count = 0;
+    for (int i = 0; i < _num; i++)
+        for (int j = 0; j < _num; j++)
+            if (_map[i][j] != EMPTY)
+                count++;
+    
+    return count;
 }
 
 @end
